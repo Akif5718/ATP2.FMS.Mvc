@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{143DC45A-D31D-4A4C-9F8E-5D67E09011CC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FMS_Repository</RootNamespace>
+    <AssemblyName>FMS_Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Project\CommunicationDAO.cs" />
+    <Compile Include="Project\SavedFileDAO.cs" />
+    <Compile Include="Project\SelectedWorkerDAO.cs" />
+    <Compile Include="Skill\CategoryDAO.cs" />
+    <Compile Include="User\EducationalDAO.cs" />
+    <Compile Include="User\OwnerDAO.cs" />
+    <Compile Include="Project\PostProjectDAO.cs" />
+    <Compile Include="Project\ProjectSectionDAO.cs" />
+    <Compile Include="Project\ProjectSkillDAO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Others\RatingOwnerDAO.cs" />
+    <Compile Include="Others\RatingWorkerDAO.cs" />
+    <Compile Include="Project\ResponseToJobDAO.cs" />
+    <Compile Include="Skill\SkillsDAO.cs" />
+    <Compile Include="User\UserDAO.cs" />
+    <Compile Include="User\WorkerDAO.cs" />
+    <Compile Include="User\WorkHistoryDAO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FMS_Data\FMS_Data.csproj">
+      <Project>{DF9A9AF9-D24F-408E-AF0F-6F8EA9FD6361}</Project>
+      <Name>FMS_Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FMS_Entities\FMS_Entities.csproj">
+      <Project>{ce67bcbd-946b-4e6f-98f3-9c9ffd05ec11}</Project>
+      <Name>FMS_Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FMS_Framework\FMS_Framework.csproj">
+      <Project>{e801c8eb-e853-4a58-aa9d-2c8f7ed77ab6}</Project>
+      <Name>FMS_Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

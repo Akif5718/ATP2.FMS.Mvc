@@ -1,0 +1,467 @@
+﻿@model FMS_Model.RequestedMemberModel
+
+@{
+    ViewBag.Title = "RequestedMember";
+    Layout = "~/Views/Shared/AfterLoginOwner.cshtml";
+}
+
+@*<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="tabs_style.css" rel="stylesheet">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+
+
+    <style>
+        .dropdown:hover > .dropdown-menu {
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <div class="container">
+            <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #132542">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="navbar-collapse collapse" id=".navbar-collapse">
+                    <ul class="nav navbar-nav">
+
+                        <li><a href="JobHome.html"><span class="glyphicon glyphicon-home"></span></a></li>
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="navbar-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" aria-expanded="False" aria-haspopup="true" role="button">
+                                Lance Bucket<span class="caret"></span>
+                            </a>
+
+                        </li>
+
+
+                        <li><a href="JobHome.html"> Job Timeline</a></li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right " style="right: 30px">
+                        <li>
+                            <a href="JobPost.html" class="btn btn-warning" type="button">
+                                <font color="White">Post a Project</font>
+                            </a>
+                        </li>
+                        <li><a href="Profile.html"><span class="glyphicon glyphicon-user"> Profile </span></a></li>
+                        <li style=""><a href="Open.html"><span class="glyphicon glyphicon-log-in"> LogOut</span></a></li>
+
+
+                        <li style=""><a href="">           </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <br /><br />*@
+        <div class="container"><h1>Requested Members  </h1></div>
+        <div id="exTab1" class="container">
+            <ul class="nav nav-pills">
+                <li class="active">
+                    <!--	<button id="1a" class="btn btn-primary" type="button" data-toggle="tab" onclick="displayDate()"> Overview </button>-->
+                    <a data-toggle="tab" class="tabLink" onclick="TabClick('1a', displayDate)"><h4>All Requests</h4></a>
+                </li>
+                <li>
+                    <!--<button  id="2a" class="btn btn-primary" type="button" data-toggle="tab" onclick="displayDate2()"> Overview2 </button>-->
+                    <a data-toggle="tab" class="tabLink" onclick="TabClick('2a', displayDate2)"><h4>Top 5</h4></a>
+                </li>
+                <li>
+                    <a class="tabLink" data-toggle="tab" onclick="TabClick('3a', displayDate)"><h4>Top 10</h4></a>
+                </li>
+                <li>
+                    <a class="tabLink" data-toggle="tab" onclick="TabClick('4a', displayDate3)"><h4>On Time</h4></a>
+                </li>
+            </ul>
+
+            <div class="tab-content clearfix">
+                <div class="tab-pane active tabLink" id="1a">
+                    <div class="container">
+
+                        <div class="page-header">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Requested Member List</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <h4>@Model.ProjectName</h4>
+                                                <p>@Model.Description</p>
+                                            </div>
+                                            <div class="col-md-6"></div>
+                                            <div class="col-md-3"></div>
+                                        </div>
+                                        <h3>Requested Members</h3>
+                                        <table class="table table-striped table-hover ">
+
+                                            <tr>
+
+                                                <th>Name</th>
+                                                <th>Details</th>
+                                                <th>Response</th>
+
+                                            </tr>
+
+                                            @foreach (var p in Model.UserInfo)
+                                            {
+                                                <tr>
+                                                    <div class="row">
+
+                                                        <th>
+                                                            <a href="ProfileWorker.html"><h5>@p.FristName @p.LastName</h5></a>
+                                                            <h6>Hi, I am so interest to your job. </h6>
+                                                        </th>
+
+                                                        <th>
+
+                                                            <h5>$300 USD in 3 days</h5>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star checked"></span>
+                                                            <span class="fa fa-star"></span>
+                                                            5.0
+                                                        </th>
+                                                        <th>
+
+
+                                                            <a href='workerProgressOwner.html' class="btn btn-primary">Hire</a>
+
+                                                        </th>
+                                                    </div>
+                                                    <hr />
+                                                </tr>
+
+                                            }
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="tab-pane tabLink" id="2a">
+                    <div class="container">
+
+                        <div class="page-header">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Requested Member List</h3>
+                                    </div>
+                                    <div class="panel-body">
+
+                                        <h3>Top 5</h3>
+                                        <div class="row">
+                                            <table class="table table-striped table-hover ">
+
+                                                <tr>
+
+                                                    <th>Name</th>
+                                                    <th>Details</th>
+                                                    <th>Response</th>
+                                                    <th>View</th>
+
+                                                </tr>
+
+                                                @foreach (var p in Model.UserInfo)
+                                                {
+                                                    <tr>
+                                                        <div class="row">
+
+                                                            <th>
+                                                                <a href="ProfileWorker.html"><h5>@p.FristName @p.LastName</h5></a>
+                                                                <h6>Hi, I am so interest to your job. </h6>
+                                                            </th>
+
+                                                            <th>
+
+                                                                <h5>$300 USD in 3 days</h5>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star checked"></span>
+                                                                <span class="fa fa-star"></span>
+                                                                5.0
+                                                            </th>
+                                                            <th>
+
+
+                                                                <a href='workerProgressOwner.html' class="btn btn-primary">Hire</a>
+
+                                                            </th>
+                                                            <th>
+                                                                <div>
+                                                                    <a class="btn  btn-success" data-toggle="modal" onclick="PopClick('abc', displayDate2)" data-target=".bootstrapmodal">view</a>
+                                                                    <div class="modal fade bootstrapmodal" id="abc">
+                                                                        <div class="modal-dialog">
+
+
+                                                                            <div class="modal-content">
+
+
+                                                                                <div class="modal-header">
+                                                                                    <button data-dismiss="modal" class="close">
+                                                                                        <span>&times;</span>
+                                                                                    </button>
+                                                                                    <h3>Rating Chart</h3>
+
+                                                                                </div>
+                                                                                <div class="modal-title">
+
+                                                                                </div>
+
+                                                                                <div class="modal-body">
+                                                                                    <div class="container">
+                                                                                        <div class="row">
+
+                                                                                            <div class="col-md-6">
+                                                                                                <div class="panel panel-default">
+                                                                                                    <div class="panel-heading">
+                                                                                                        <h3>Top 10</h3>
+                                                                                                    </div>
+                                                                                                    <div id="chart2" class="panel-body">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </th>
+                                                        </div>
+                                                        <hr />
+                                                    </tr>
+
+                                                }
+                                            </table>
+
+
+                                        </div>
+
+                                    </div><hr />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="tab-pane tabLink" id="3a">
+
+                <div class="container">
+
+                    <div class="page-header">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="container">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3>Top 10</h3>
+                                            </div>
+                                            <div id="chart1" class="panel-body">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane tabLink" id="4a">
+
+                <div class="container">
+
+                    <div class="page-header">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="container">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3>On Time</h3>
+                                            </div>
+                                            <div id="chart3" class="panel-body">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+        <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+
+
+        <script>
+
+            $(document).ready(function () {
+
+                displayDate();
+                displayDate2();
+                displayDate3();
+
+            });
+
+            var displayDate = function () {
+                var data1 = [12, 3, 4, 2, 12, 3, 4, 17, 22, 34, 54, 67];
+
+
+                $("#chart1").shieldChart({
+                    exportOptions: {
+                        image: false,
+                        print: false
+                    },
+                    axisY: {
+                        title: {
+                            text: "Break-Down for selected quarter"
+                        }
+                    },
+                    dataSeries: [{
+                        seriesType: "bar",
+                        data: data1
+                    }]
+                });
+            }
+
+            function TabClick(tabName, fn) {
+                $('.tabLink').removeClass('active');
+                $(this).addClass('active');
+                $("#" + tabName).addClass('active');
+                fn();
+            }
+            function PopClick(tabName, fn) {
+                $("#" + tabName).addClass('in');
+                fn();
+            }
+
+            var displayDate2 = function () {
+
+
+                var data2 = [3, 9, 12, 14, 22, 32, 45, 12, 67, 45, 55, 7];
+                var data3 = [23, 19, 11, 134, 242, 352, 435, 22, 637, 445, 555, 57];
+
+                $("#chart2").shieldChart({
+                    exportOptions: {
+                        image: false,
+                        print: false
+                    },
+                    axisY: {
+                        title: {
+                            text: "Break-Down for selected quarter"
+                        }
+                    },
+                    dataSeries: [{
+                        seriesType: "bar",
+                        data: data2
+                    }, {
+                        seriesType: "bar",
+                        data: data3
+                    }]
+                });
+            }
+
+            var displayDate3 = function () {
+
+                var data2 = [3, 9, 12, 14, 22, 32, 45, 12, 67, 45, 55, 7];
+                var data3 = [23, 19, 11, 134, 242, 352, 435, 22, 637, 445, 555, 57];
+                var data4 = [2, 10, 1, 184, 242, 352, 435, 22, 637, 445, 555, 57];
+
+                $("#chart3").shieldChart({
+                    exportOptions: {
+                        image: false,
+                        print: false
+                    },
+                    axisY: {
+                        title: {
+                            text: "Break-Down for selected quarter"
+                        }
+                    },
+                    axisX: {
+                        title: {
+                            text: "Break-Down "
+                        }
+                    },
+                    dataSeries: [{
+                        seriesType: "bar",
+                        data: data2
+                    }, {
+                        seriesType: "bar",
+                        data: data3
+                    },
+                    {
+                        seriesType: "bar",
+                        data: data4
+                    }]
+                });
+            }
+        </script>
+
+
+
+@*</body>
+</html>*@

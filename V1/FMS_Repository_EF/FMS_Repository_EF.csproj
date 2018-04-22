@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0DCCB58D-36ED-44D9-A643-DFAF7528F978}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FMS_Repository_EF</RootNamespace>
+    <AssemblyName>FMS_Repository_EF</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Others\BaseRepo.cs" />
+    <Compile Include="Project\CommunicationRepo.cs" />
+    <Compile Include="Project\ResponseToaJobRepo.cs" />
+    <Compile Include="User\EducationalBackgroundRepo.cs" />
+    <Compile Include="Others\IRepository.cs" />
+    <Compile Include="User\OwnerInfoRepo.cs" />
+    <Compile Include="Others\PaymentRepo.cs" />
+    <Compile Include="Project\PostAProjectRepo.cs" />
+    <Compile Include="Project\ProjectSectionRepo.cs" />
+    <Compile Include="Project\ProjectSkillRepo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Others\RatingOwnerRepo.cs" />
+    <Compile Include="Others\RatingWorkerRepo.cs" />
+    <Compile Include="Others\Repository.cs" />
+    <Compile Include="Project\SelectedWorkerRepo.cs" />
+    <Compile Include="Skill\SkillCategoryRepo.cs" />
+    <Compile Include="Skill\SkillRepo.cs" />
+    <Compile Include="User\UserInfoRepo.cs" />
+    <Compile Include="User\WorkerInfoRepo.cs" />
+    <Compile Include="User\WorkHistoryRepo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FMS_Data\FMS_Data.csproj">
+      <Project>{df9a9af9-d24f-408e-af0f-6f8ea9fd6361}</Project>
+      <Name>FMS_Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FMS_Entities\FMS_Entities.csproj">
+      <Project>{ce67bcbd-946b-4e6f-98f3-9c9ffd05ec11}</Project>
+      <Name>FMS_Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FMS_Framework\FMS_Framework.csproj">
+      <Project>{e801c8eb-e853-4a58-aa9d-2c8f7ed77ab6}</Project>
+      <Name>FMS_Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
