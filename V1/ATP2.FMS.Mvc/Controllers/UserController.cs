@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace ATP2.FMS.Mvc.Controllers
 {
-    [Authorize]
+
     public class UserController : BaseController
     {
         // GET: User
@@ -81,7 +81,8 @@ namespace ATP2.FMS.Mvc.Controllers
 
 
         }
-        [AllowAnonymous]
+
+        [HttpGet]
         public ActionResult LoginForm()
         {
 
