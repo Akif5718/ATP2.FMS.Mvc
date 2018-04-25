@@ -30,6 +30,7 @@ namespace ATP2.FMS.Mvc.Controllers
             try
             {
                 var postAProject=new PostAProject();
+                postAProject.WUserId = CurrentUser.User.UserId;
                 postAProject.ProjectName = PostProjectModel.ProjectName;
                 postAProject.Description = PostProjectModel.Description;
                 postAProject.Price = PostProjectModel.Price;
@@ -59,14 +60,14 @@ namespace ATP2.FMS.Mvc.Controllers
                 if (result.HasError)
                 {
                     ViewBag.Message = result.Message;
-                    return View("CreateProject", PostProjectModel);
+                    return View("CreateProject");
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            return RedirectToAction("CreateProject");
+            return RedirectToAction("ProjectList","Owner");
         }
 
         public ActionResult ProjectDetails(int? id)

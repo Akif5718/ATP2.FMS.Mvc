@@ -28,7 +28,7 @@ namespace FMS_Repository
                      PostAProject.PostId = GetID();
                      var d = PostAProject.StartTime.ToString(string.Format("dd/MMM/yyyy"));
                      var b = PostAProject.EndTime.ToString(string.Format("dd/MMM/yyyy"));
-                     query = "insert into PostAProject values(" + PostAProject.PostId + "," +1 + ",'" + PostAProject.ProjectName + "'," + PostAProject.Price + ",'" + d + "','" + b + "','" + PostAProject.Description + "'," + PostAProject.Members + ")";
+                     query = "insert into PostAProject values(" + PostAProject.PostId + "," +PostAProject.WUserId + ",'" + PostAProject.ProjectName + "'," + PostAProject.Price + ",'" + d + "','" + b + "','" + PostAProject.Description + "'," + PostAProject.Members + ")";
                 }
                 else
                 {
