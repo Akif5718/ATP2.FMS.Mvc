@@ -176,6 +176,7 @@
     <Content Include="Views\Shared\AfterLoginWorker.cshtml" />
     <Content Include="Views\ProjectPost\WorkProgress.cshtml" />
     <Content Include="Views\Owner\EditProfile.cshtml" />
+    <Content Include="Views\Worker\EditProfileWorker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -52,6 +52,7 @@ namespace FMS_Model
 
 
         public string RatePerHour { get; set; }
+        public float EarnedMoney { get; set; }
 
        
         

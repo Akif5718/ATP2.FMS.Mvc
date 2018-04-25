@@ -19,18 +19,18 @@ namespace FMS_Repository
             try
             {
                 string query = "select * from ResponseToaJob where PostID=" + ResponseToaJob.PostId;
-                var dt = DataAccess.GetDataTable(query);
+                //var dt = DataAccess.GetDataTable(query);
 
-                if (dt == null || dt.Rows.Count == 0)
-                {
+                //if (dt == null || dt.Rows.Count == 0)
+                //{
                     // ResponseToaJob.PostID = GetID();
                     query = "insert into ResponseToaJob values(" + ResponseToaJob.PostId + "," + ResponseToaJob.WUserId + "," + ResponseToaJob.FixedPrice + ",'" + ResponseToaJob.SubmissionTime + "')";
-                }
-                else
-                {
-                    query = "update ResponseToaJob set FixedPrice=" + ResponseToaJob.FixedPrice + ",SubmissionTime='" + ResponseToaJob.SubmissionTime + "' where PostID=" +
-                      ResponseToaJob.PostId;
-                }
+                //}
+                //else
+                //{
+                //    query = "update ResponseToaJob set FixedPrice=" + ResponseToaJob.FixedPrice + ",SubmissionTime='" + ResponseToaJob.SubmissionTime + "' where PostID=" +
+                //      ResponseToaJob.PostId;
+                //}
 
                
 

@@ -1,4 +1,5 @@
-﻿@model FMS_Model.PostProjectModel
+﻿@using FMS_Framework
+@model FMS_Model.PostProjectModel
 @{
     ViewBag.Title = "ProjectDetails";
     Layout = "~/Views/Shared/AfterLoginOwner.cshtml";
@@ -113,7 +114,7 @@
                           @using (Html.BeginForm("ProjectDetails", "ProjectPost"))
                           {
                               
-                         
+                         <input type="hidden" value="@CurrentUser.User.UserId" name="WUserId"/>
                             @Html.HiddenFor(m => m.PostId, new { @class = "form-control" })
                             <div class="col-md-3">
                                  <input type="submit" value="Interested Bid" class="btn btn-primary btn-block" />

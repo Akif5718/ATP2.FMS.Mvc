@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FMS_Entities;
+using FMS_Framework;
 using FMS_Model;
 using FMS_Repository;
 using FMS_Web_Framework.Base;
@@ -111,7 +112,7 @@ namespace ATP2.FMS.Mvc.Controllers
 
                 ResponseToaJob responseto = new ResponseToaJob();
                 responseto.PostId = PostProjectModel.PostId;
-                responseto.WUserId = 1;
+                responseto.WUserId = CurrentUser.User.UserId;
                 var result = response.Save(responseto);
 
                 if (result.HasError)
@@ -124,12 +125,12 @@ namespace ATP2.FMS.Mvc.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
-            return RedirectToAction("ProjectDetails");
+            return RedirectToAction("ProjectList","Owner");
         }
 
-        public ActionResult RequestedMember()
+        public ActionResult RequestedMember(int id)
         {
-            RequestedMemberModel requested = getall();
+            RequestedMemberModel requested = getall(id);
             return View(requested);
         }
 
@@ -137,11 +138,7 @@ namespace ATP2.FMS.Mvc.Controllers
         public ActionResult RequestedMember(SelectedWorker selected)
         {
 
-            if (!ModelState.IsValid)
-            {
-                return View("RequestedMember");
-            }
-
+           
             try
             {
 
@@ -156,21 +153,21 @@ namespace ATP2.FMS.Mvc.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
-            return RedirectToAction("RequestedMember");
+            return RedirectToAction("OwnerProfile","Owner");
         }
 
-        public ActionResult WorkProgress()
+        public ActionResult WorkProgress(int id)
         {
             WorkProgressModel work = new WorkProgressModel();
 
-            work.RequestedMemberModel= getall();
-            var result = projectSectionDao.GetAll(1);
+          //  work.RequestedMemberModel= getall();
+            var result = projectSectionDao.GetAll(id);
             foreach (var section in result)
             {
                 work.USectionName.Add(section.SectionName+"1");
             }
             work.ProjectSection = result;
-            var result2 = selectedWorkerDao.GetAll(1);
+            var result2 = selectedWorkerDao.GetAll(id);
             work.SelectedWorkers = result2;
             foreach (var p in result2)
             {
@@ -225,12 +222,12 @@ namespace ATP2.FMS.Mvc.Controllers
             return RedirectToAction("WorkProgress");
         }
 
-        private RequestedMemberModel getall()
+        private RequestedMemberModel getall(int id)
         {
             RequestedMemberModel requested = new RequestedMemberModel();
-            var result = response.GetAll(1);
+            var result = response.GetAll(id);
 
-            var result2 = postProjectDao.GetByID(1);
+            var result2 = postProjectDao.GetByID(id);
             requested.ProjectName = result2.Data.ProjectName;
             requested.Description = result2.Data.Description;
             requested.PostId = result2.Data.PostId;

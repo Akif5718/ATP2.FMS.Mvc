@@ -136,7 +136,7 @@ namespace FMS_RepositoryOracle
             try
             {
                 WorkerInfo u = new WorkerInfo();
-                u.UserId = Int32.Parse(row["ID"].ToString());
+                u.UserId = Int32.Parse(row["UserID"].ToString());
                 u.EarnedMoney = Int32.Parse(row["EarnedMoney"].ToString());
                 u.RatePerHour = row["RatePerHour"].ToString();
 

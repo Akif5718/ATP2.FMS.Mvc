@@ -83,7 +83,7 @@ namespace ATP2.FMS.Mvc.Controllers
 
             else
             {
-                return RedirectToAction("OwnerForm");
+                return RedirectToAction("WorkerForm");
 
             }
 
@@ -126,7 +126,7 @@ namespace ATP2.FMS.Mvc.Controllers
 
             else
             {
-                return RedirectToAction("OwnerProfile","Owner");
+                return RedirectToAction("WorkerProfile","Worker");
 
             }
         }
@@ -155,7 +155,7 @@ namespace ATP2.FMS.Mvc.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
-            return RedirectToAction("OwnerForm", "User");
+            return RedirectToAction("WorkerProfile", "Worker");
 
         }
 

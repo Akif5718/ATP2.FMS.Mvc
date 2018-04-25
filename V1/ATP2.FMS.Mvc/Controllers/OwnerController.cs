@@ -127,7 +127,6 @@ namespace ATP2.FMS.Mvc.Controllers
         public ActionResult ProjectList1()
         {
 
-
             return RedirectToAction("ProjectList");
         }
     }

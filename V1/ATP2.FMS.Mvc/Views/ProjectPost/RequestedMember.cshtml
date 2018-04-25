@@ -82,13 +82,13 @@
                                                             @using (Html.BeginForm("RequestedMember", "ProjectPost"))
                                                             {
                                                                 <input type="hidden" name="PostId" value="@Model.PostId" />
-                                                                 <input type="hidden" name="UserId" value="@Model.UserInfo[0].UserId" />
+                                                                 <input type="hidden" name="UserId" value="@p.UserId" />
 
 
                                                                 <div class="col-lg-3 col-lg-offset-2">
-                                                                    <a href="WorkerProgressOwner.html">
-                                                                        <button type="submit" class="btn btn-primary">Hire</button>
-                                                                    </a>
+                                                                    
+                                                                    <input type="submit"value="Hire" class="btn btn-primary"/>
+                                                                   
                                                                 </div>
                                                             }
 

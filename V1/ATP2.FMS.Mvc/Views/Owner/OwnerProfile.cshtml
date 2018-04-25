@@ -217,7 +217,7 @@ function drawChart() {
                             <hr class="my-4">
                             <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                             <p class="lead">
-                                <a class="btn btn-primary btn-lg" href="JobPost.html" role=" button">Create Job</a>
+                                <a class="btn btn-primary btn-lg"  href="@Url.Action("CreateProject","ProjectPost")" role=" button">Create Job</a>
                             </p>
                         </div>
 
@@ -227,18 +227,23 @@ function drawChart() {
                                 <legend>Posted Jobs:</legend>
                              @foreach (var p in Model.PostAProject)
                              {
-                                <div class="list-group">
-                                    <a href='' class="list-group-item list-group-item-action flex-column align-items-start active">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">@p.ProjectName</h5>
-                                            <small>@p.StartTime</small>
-                                        </div>
-                                        <p class="mb-1">@p.Description</p>
-                                       
-                                    </a>
-                                    <a href="Bars.html" class="btn btn-primary">Requests</a>
+                                 <div class="list-group">
+                               
 
-                                </div>
+
+                                     <a href='@Url.Action("WorkProgress","ProjectPost")/@p.PostId' class=" list-group-item list-group-item-action flex-column align-items-start active">
+                                         <div class="d-flex w-100 justify-content-between">
+                                             <h5 class="mb-1">@p.ProjectName</h5>
+                                             <small>@p.StartTime</small>
+                                         </div>
+                                         <p class="mb-1">@p.Description</p>
+
+                                     </a>
+                                     @Html.ActionLink("Requests", "RequestedMember", new { Controller = "ProjectPost", id = @p.PostId }, new { @class = "btn btn-info" })
+
+
+                                  
+                                 </div>
                              }
 
                                

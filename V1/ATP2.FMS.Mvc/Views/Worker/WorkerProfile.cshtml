@@ -108,7 +108,7 @@
             </div>
             <div style=" border-width: 0px;  height: 40px; width: 110px; overflow: hidden;">
                 &nbsp;&nbsp;
-                <a href="EditProfile.html" class="btn btn-success" type="button">
+                <a href="@Url.Action("EditProfileWorker", "Worker")" class="btn btn-success" type="button">
                     <i class="fa fa-edit"></i>
 
                     <font color="White">Edit</font>
@@ -127,16 +127,16 @@
                         <div class="list-group">
                             @foreach (var p in Model.PostAProjects)
                             {
-                                
+                                <a href='WorkerProgress.html' class="list-group-item list-group-item-action flex-column align-items-start active">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">@p.ProjectName</h5>
+                                        <small>@p.StartTime</small>
+                                    </div>
+                                    <p class="mb-1">@p.Description</p>
+                                  
+                                </a>
                             }
-                            <a href='WorkerProgress.html' class="list-group-item list-group-item-action flex-column align-items-start active">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">List group item heading</h5>
-                                    <small>3 days ago</small>
-                                </div>
-                                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                <small>Donec id elit non mi porta.</small>
-                            </a>
+                          
 
                         </div>
 
@@ -185,7 +185,7 @@
                     </div>
                     <br /><br /><br />
                     <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="JobHomeWorker.html" role=" button">Search Jobs</a>
+                        <a href="@Url.Action("ProjectList", "Owner")" class="btn btn-success" type="button">Search Jobs</a>
                     </p>
                 </div>
             </div>

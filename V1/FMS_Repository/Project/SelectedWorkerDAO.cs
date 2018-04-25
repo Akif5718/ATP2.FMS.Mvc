@@ -20,15 +20,15 @@ namespace FMS_Repository.Project
             try
             {
                 string query = "select * from SelectedWorker where PostId=" + SelectedWorker.PostId;
-                var dt = DataAccess.GetDataTable(query);
+                //var dt = DataAccess.GetDataTable(query);
 
-                if (dt == null || dt.Rows.Count == 0)
-                {
+                //if (dt == null || dt.Rows.Count == 0)
+                //{
                    // SelectedWorker.SavedFileId = GetID();
                     var d = SelectedWorker.SubmissionDate.ToString(string.Format("dd/MMM/yyyy"));
 
                     query = "insert into SelectedWorker values(" + SelectedWorker.PostId + "," + SelectedWorker.UserId + "," + SelectedWorker.Price + ",'" + d + "')";
-                }
+                //}
                 //else
                 //{
                 //    query = "update SelectedWorker set ProjectName='" + SelectedWorker.ProjectName + "',StartTime='" + SelectedWorker.StartTime + "',EndTime='" + SelectedWorker.EndTime + "',Description='" + SelectedWorker.Description + "',ProjectSection='" + SelectedWorker.ProjectSection + "',Price=" + SelectedWorker.Price + ",Members=" + SelectedWorker.Members + " where PostID=" + SelectedWorker.PostId;
