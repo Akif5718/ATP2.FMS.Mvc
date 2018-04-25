@@ -22,10 +22,7 @@ namespace ATP2.FMS.Mvc.Controllers
         [HttpPost]
         public ActionResult CreateProject(PostProjectModel PostProjectModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("CreateProject", PostProjectModel);
-            }
+           
 
             try
             {
@@ -70,10 +67,10 @@ namespace ATP2.FMS.Mvc.Controllers
             return RedirectToAction("ProjectList","Owner");
         }
 
-        public ActionResult ProjectDetails(int? id)
+        public ActionResult ProjectDetails(int id)
         {
             //postid
-            var result = postProjectDao.GetByID(1);
+            var result = postProjectDao.GetByID(id);
             PostProjectModel postProjectModel= new PostProjectModel();
 
             postProjectModel.ProjectName = result.Data.ProjectName;

@@ -146,6 +146,7 @@ namespace FMS_Web_Framework.Base
 
         }
         private static CommunicationDAO _communicationDao;
+
         public static CommunicationDAO CommunicationDao
         {
             get
@@ -153,6 +154,20 @@ namespace FMS_Web_Framework.Base
                 if (_communicationDao == null)
                     _communicationDao = new CommunicationDAO();
                 return _communicationDao;
+            }
+
+
+
+        }
+
+        private static RatingOwnerDAO _ratingOwner;
+        public static RatingOwnerDAO ratingOwnerDao
+        {
+            get
+            {
+                if (_ratingOwner == null)
+                    _ratingOwner = new RatingOwnerDAO();
+                return _ratingOwner;
             }
 
         }

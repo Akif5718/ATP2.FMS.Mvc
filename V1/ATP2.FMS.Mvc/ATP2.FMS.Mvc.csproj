@@ -177,6 +177,7 @@
     <Content Include="Views\ProjectPost\WorkProgress.cshtml" />
     <Content Include="Views\Owner\EditProfile.cshtml" />
     <Content Include="Views\Worker\EditProfileWorker.cshtml" />
+    <Content Include="Views\Owner\RatingWorker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

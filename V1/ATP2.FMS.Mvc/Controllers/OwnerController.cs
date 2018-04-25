@@ -129,5 +129,16 @@ namespace ATP2.FMS.Mvc.Controllers
 
             return RedirectToAction("ProjectList");
         }
+
+        public ActionResult RatingWorker()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RatingWorker(RatingOwner ratingOwner)
+        {
+            var result = ratingOwnerDao.Save(ratingOwner);
+            return RedirectToAction("OwnerProfile", "Owner");
+        }
     }
 }

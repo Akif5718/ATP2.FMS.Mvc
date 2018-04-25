@@ -242,7 +242,7 @@
                {
                 <tr class="" style="background-color: skyblue; color: black">
                     <td>
-                        <h4><a href="@Url.Action("ProjectDetails", "ProjectPost")"  id="+@p.PostId+" style="color: black" >@p.ProjectName </a></h4>
+                        <h4><a href="@Url.Action("ProjectDetails", "ProjectPost")/@p.PostId" style="color: black" >@p.ProjectName </a></h4>
                         <p class="list-group-item-text">
                             @p.Description
                         </p>

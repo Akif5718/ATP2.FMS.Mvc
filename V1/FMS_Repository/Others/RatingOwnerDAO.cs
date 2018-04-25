@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FMS_Data;
 using FMS_Entities;
+using FMS_Framework;
 using FMS_Framework.Helper;
 using FMS_Framework.Object;
 using RatingOwner = FMS_Entities.RatingOwner;
@@ -24,7 +25,7 @@ namespace FMS_Repository
 
                 if (dt == null || dt.Rows.Count == 0)
                 {
-                    // RatingOwner.UserId = GetID();
+                    RatingOwner.UserId = CurrentUser.User.UserId;
                     query = "insert into RatingOwner values(" + RatingOwner.UserId + "," + RatingOwner.CommunicationSkill + "," + RatingOwner.Reliability + "," + RatingOwner.OnWord + "," + RatingOwner.Behaviour + ")";
                 }
                 else

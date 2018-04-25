@@ -86,56 +86,56 @@
                 </div>
                 <div id="@p.ProjectSectionId" class="panel-collapse collapse">
                     <div class="panel-body"><h2>Work Details :@p.SectionDescription </h2></div>
-                        <label for="changeRate">
-                            <input type="checkbox" id="@p.SectionName" onclick="ShowHideDiv(this, '@p.SectionName@p.ProjectSectionId')" />
+                    <label for="changeRate">
+                        <input type="checkbox" id="@p.SectionName" onclick="ShowHideDiv(this, '@p.SectionName@p.ProjectSectionId')" />
                         Change Parcentage and price
-                        </label>
-                         <hr />
-                     @using (Html.BeginForm("WorkProgress", "ProjectPost"))
-                     {
+                    </label>
+                    <hr />
+                    @using (Html.BeginForm("WorkProgress", "ProjectPost"))
+                    {
                         <input type="hidden" name="PROJECTSECTIONID" value="@p.ProjectSectionId" />
-    <div id="@p.SectionName@p.ProjectSectionId"
-         style="display: none">
-        <label class="col-lg-2 control-label"> Set percentage:</label>
+                        <div id="@p.SectionName@p.ProjectSectionId"
+                             style="display: none">
+                            <label class="col-lg-2 control-label"> Set percentage:</label>
 
 
-        <input class="form-control" name="Percentage" id="Percentage" value="@p.Percentage" placeholder="percentage" type=" text" />
+                            <input class="form-control" name="Percentage" id="Percentage" value="@p.Percentage" placeholder="percentage" type=" text" />
 
-        <label class="col-lg-2 control-label">
-            Set price:
-        </label>
-        <input class="form-control" name="price" id="price" value="@p.Price" placeholder="Price" type=" text" />
+                            <label class="col-lg-2 control-label">
+                                Set price:
+                            </label>
+                            <input class="form-control" name="price" id="price" value="@p.Price" placeholder="Price" type=" text" />
 
-        <label class="col-lg-2 control-label">
-            Description:
-        </label>
-        <input class="form-control" name="SectionDescription" id="SectionDescription" value="@p.SectionDescription" placeholder="SectionDescription" type=" text" />
+                            <label class="col-lg-2 control-label">
+                                Description:
+                            </label>
+                            <input class="form-control" name="SectionDescription" id="SectionDescription" value="@p.SectionDescription" placeholder="SectionDescription" type=" text" />
 
-        <label class="col-lg-2 control-label">
-            Finish Time:
-        </label>
-        <input class="form-control" name="FinishTime" id="FinishTime" value="@p.FinishTime" placeholder="FinishTime" type=" text" />
+                            <label class="col-lg-2 control-label">
+                                Finish Time:
+                            </label>
+                            <input class="form-control" name="FinishTime" id="FinishTime" value="@p.FinishTime" placeholder="FinishTime" type=" text" />
 
-        <br />
-        <label class="col-lg-2 control-label">
-            Assign worker for this Section :
-        </label>
-        <select class="form-control" name="WORKERNAME">
-            @foreach (var s in Model.Name)
-            {
-                <option value="@s" name="WORKERNAME">@s</option>
-            }
-
-
-        </select>
+                            <br />
+                            <label class="col-lg-2 control-label">
+                                Assign worker for this Section :
+                            </label>
+                            <select class="form-control" name="WORKERNAME">
+                                @foreach (var s in Model.Name)
+                                {
+                                    <option value="@s" name="WORKERNAME">@s</option>
+                                }
 
 
+                            </select>
 
-        <button class="btn btn-primary" type="submit">Save</button>
-        <br />
-    </div>
 
-                     }
+
+                            <button class="btn btn-primary" type="submit">Save</button>
+                            <br />
+                        </div>
+
+                    }
                     <br /><br />
                     <div class="row container">
                         <table class="table table-striped table-hover ">
@@ -230,10 +230,19 @@
                 </div>
             </div>
         </div>
+
+
     </div>
+    
 
 
 }
+@Html.ActionLink("Approve", "RatingWorker", new { Controller = "Owner" }, new { @class = "btn btn-info" })
+
+
+
+
+
 
 
 

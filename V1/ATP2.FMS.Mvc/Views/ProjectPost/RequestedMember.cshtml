@@ -87,7 +87,7 @@
 
                                                                 <div class="col-lg-3 col-lg-offset-2">
                                                                     
-                                                                    <input type="submit"value="Hire" class="btn btn-primary"/>
+                                                                    <input type="submit" id="@p.UserId" onclick="" value="Hire" class="btn btn-primary"/>
                                                                    
                                                                 </div>
                                                             }
@@ -292,108 +292,118 @@
         <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
 
 
-        <script>
+<script>
+    document.getElementById("demo").onclick = function () { myFunction() };
 
-            $(document).ready(function () {
+    function myFunction() {
+        document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+    }
+</script>
 
-                displayDate();
-                displayDate2();
-                displayDate3();
+    < script >
 
-            });
+                $(document).ready(function () {
 
-            var displayDate = function () {
-                var data1 = [12, 3, 4, 2, 12, 3, 4, 17, 22, 34, 54, 67];
+                    displayDate();
+                    displayDate2();
+                    displayDate3();
 
-
-                $("#chart1").shieldChart({
-                    exportOptions: {
-                        image: false,
-                        print: false
-                    },
-                    axisY: {
-                        title: {
-                            text: "Break-Down for selected quarter"
-                        }
-                    },
-                    dataSeries: [{
-                        seriesType: "bar",
-                        data: data1
-                    }]
                 });
-            }
 
-            function TabClick(tabName, fn) {
-                $('.tabLink').removeClass('active');
-                $(this).addClass('active');
-                $("#" + tabName).addClass('active');
-                fn();
-            }
-            function PopClick(tabName, fn) {
-                $("#" + tabName).addClass('in');
-                fn();
-            }
-
-            var displayDate2 = function () {
+    var displayDate = function () {
+        var data1 = [12, 3, 4, 2, 12, 3, 4, 17, 22, 34, 54, 67];
 
 
-                var data2 = [3, 9, 12, 14, 22, 32, 45, 12, 67, 45, 55, 7];
-                var data3 = [23, 19, 11, 134, 242, 352, 435, 22, 637, 445, 555, 57];
+        $("#chart1").shieldChart({
+            exportOptions: {
+                image: false,
+                print: false
+            },
+            axisY: {
+                title: {
+                    text: "Break-Down for selected quarter"
+                }
+            },
+            dataSeries: [{
+                seriesType: "bar",
+                data: data1
+            }]
+        });
+    }
 
-                $("#chart2").shieldChart({
-                    exportOptions: {
-                        image: false,
-                        print: false
-                    },
-                    axisY: {
-                        title: {
-                            text: "Break-Down for selected quarter"
-                        }
-                    },
-                    dataSeries: [{
-                        seriesType: "bar",
-                        data: data2
-                    }, {
-                        seriesType: "bar",
-                        data: data3
-                    }]
-                });
-            }
+    function TabClick(tabName, fn) {
+        $('.tabLink').removeClass('active');
+        $(this).addClass('active');
+        $("#" + tabName).addClass('active');
+        fn();
+    }
+    function PopClick(tabName, fn) {
+        $("#" + tabName).addClass('in');
+        fn();
+    }
 
-            var displayDate3 = function () {
+    var displayDate2 = function () {
 
-                var data2 = [3, 9, 12, 14, 22, 32, 45, 12, 67, 45, 55, 7];
-                var data3 = [23, 19, 11, 134, 242, 352, 435, 22, 637, 445, 555, 57];
-                var data4 = [2, 10, 1, 184, 242, 352, 435, 22, 637, 445, 555, 57];
 
-                $("#chart3").shieldChart({
-                    exportOptions: {
-                        image: false,
-                        print: false
-                    },
-                    axisY: {
-                        title: {
-                            text: "Break-Down for selected quarter"
-                        }
-                    },
-                    axisX: {
-                        title: {
-                            text: "Break-Down "
-                        }
-                    },
-                    dataSeries: [{
-                        seriesType: "bar",
-                        data: data2
-                    }, {
-                        seriesType: "bar",
-                        data: data3
-                    },
-                    {
-                        seriesType: "bar",
-                        data: data4
-                    }]
-                });
-            }
-        </script>
+        var data2 = [3, 9, 12, 14, 22, 32, 45, 12, 67, 45, 55, 7];
+        var data3 = [23, 19, 11, 134, 242, 352, 435, 22, 637, 445, 555, 57];
+
+        $("#chart2").shieldChart({
+            exportOptions: {
+                image: false,
+                print: false
+            },
+            axisY: {
+                title: {
+                    text: "Break-Down for selected quarter"
+                }
+            },
+            dataSeries: [{
+                seriesType: "bar",
+                data: data2
+            }, {
+                seriesType: "bar",
+                data: data3
+            }]
+        });
+    }
+
+    var displayDate3 = function () {
+
+        var data2 = [3, 9, 12, 14, 22, 32, 45, 12, 67, 45, 55, 7];
+        var data3 = [23, 19, 11, 134, 242, 352, 435, 22, 637, 445, 555, 57];
+        var data4 = [2, 10, 1, 184, 242, 352, 435, 22, 637, 445, 555, 57];
+
+        $("#chart3").shieldChart({
+            exportOptions: {
+                image: false,
+                print: false
+            },
+            axisY: {
+                title: {
+                    text: "Break-Down for selected quarter"
+                }
+            },
+            axisX: {
+                title: {
+                    text: "Break-Down "
+                }
+            },
+            dataSeries: [{
+                seriesType: "bar",
+                data: data2
+            }, {
+                seriesType: "bar",
+                data: data3
+            },
+            {
+                seriesType: "bar",
+                data: data4
+            }]
+        });
+    }
+
+
+
 
 
