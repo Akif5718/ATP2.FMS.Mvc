@@ -8,6 +8,7 @@ using FMS_Data;
 using FMS_Entities;
 using FMS_Framework.Helper;
 using FMS_Framework.Object;
+using FMS_RepositoryOracle;
 using PostAProject = FMS_Entities.PostAProject;
 
 namespace FMS_Repository
@@ -212,9 +213,13 @@ namespace FMS_Repository
         public bool Delete(int id)
         {
             var result = new Result<PostAProject>();
+            UserDAO usr = new UserDAO();
+            var user = usr.GetById(id);
             try
             {
-                string query = "delete from PostAProject where PostID=" + id;
+                string q1 = "declare ID trackuser.Userid%type; UName trackuser.username%type;  begin  ID:=" + id + "; UName:='" + user.Data.FristName + "'; ";
+                string q2 = "track_user_pkg.P_DELETEPOST(ID,UName); end /";
+                string query = q1 + "delete from PostAProject where PostID=" + id + ";" + q2;
                 return DataAccess.ExecuteQuery(query) > 0;
             }
             catch (Exception ex)

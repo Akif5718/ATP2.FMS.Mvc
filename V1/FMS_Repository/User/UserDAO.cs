@@ -33,7 +33,16 @@ namespace FMS_RepositoryOracle
                     {
                        // var b = userinfo.DateofBrith.ToString(string.Format("dd/MMM/yyyy"));
 
-                        query = "update UserInfo set FirstName='" + userinfo.FristName + "',LastName='" + userinfo.LastName + "',Password='" + userinfo.Password + "',City='" + userinfo.City + "',State='" + userinfo.State + "',ProPic='" + userinfo.ProPic + "',Country='" + userinfo.Country + "',Balance=" + userinfo.Balance + " where UserId=" + userinfo.UserId;
+                        string q1 = "declare ID trackuser.Userid%type; UName trackuser.username%type;  begin ID:=" + userinfo.UserId + ";  UName:='" + userinfo.FristName + "'; ";
+                        string q2 = "track_user_pkg.P_UPDATEUSER(ID, UName); end;";
+
+                        query = q1 + "update UserInfo set FirstName='" + userinfo.FristName + "',LastName='" +
+                                userinfo.LastName + "',Password='" + userinfo.Password + "',City='" + userinfo.City +
+                                "',State='" + userinfo.State + "',ProPic='" + userinfo.ProPic + "',Country='" +
+                                userinfo.Country + "',Balance=" + userinfo.Balance + " where UserId=" +
+                                userinfo.UserId + ";" + q2;
+
+
                     }
 
                     //if (!IsValid(userinfo, result))
