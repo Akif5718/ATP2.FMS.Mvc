@@ -43,9 +43,11 @@
   <ItemGroup>
     <Compile Include="Owner.cs" />
     <Compile Include="PostProjectModel.cs" />
+    <Compile Include="ProjectListModel.cs" />
     <Compile Include="RequestedMemberModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrationModel.cs" />
+    <Compile Include="WorkProgressModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FMS_Entities\FMS_Entities.csproj">

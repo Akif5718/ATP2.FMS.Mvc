@@ -25,7 +25,9 @@ namespace FMS_Repository.Project
                 if (dt == null || dt.Rows.Count == 0)
                 {
                    // SelectedWorker.SavedFileId = GetID();
-                    query = "insert into SelectedWorker values(" + SelectedWorker.PostId + "," + SelectedWorker.UserId + "," + SelectedWorker.Price + ",'" + SelectedWorker.SubmissionDate + "')";
+                    var d = SelectedWorker.SubmissionDate.ToString(string.Format("dd/MMM/yyyy"));
+
+                    query = "insert into SelectedWorker values(" + SelectedWorker.PostId + "," + SelectedWorker.UserId + "," + SelectedWorker.Price + ",'" + d + "')";
                 }
                 //else
                 //{
@@ -72,7 +74,31 @@ namespace FMS_Repository.Project
 
                 if (dt != null && dt.Rows.Count != 0)
                 {
-                    for (int i = 0; i <= dt.Rows.Count; i++)
+                    for (int i = 0; i <dt.Rows.Count; i++)
+                    {
+                        SelectedWorker u = ConvertToEntity(dt.Rows[i]);
+                        result.Add(u);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return result;
+            }
+            return result;
+        }
+
+        public List<SelectedWorker> GetAll(int id)
+        {
+            var result = new List<SelectedWorker>();
+            try
+            {
+                string query = "select * from SelectedWorker where PostId=" + id;
+                var dt = DataAccess.GetDataTable(query);
+
+                if (dt != null && dt.Rows.Count != 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         SelectedWorker u = ConvertToEntity(dt.Rows[i]);
                         result.Add(u);

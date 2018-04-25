@@ -5,81 +5,7 @@
     Layout = "~/Views/Shared/AfterLoginOwner.cshtml";
 }
 
-@*<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="tabs_style.css" rel="stylesheet">
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-
-
-
-    <style>
-        .dropdown:hover > .dropdown-menu {
-            display: block;
-        }
-    </style>
-
-</head>
-<body>
-    <div>
-        <div class="container">
-            <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #132542">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-
-                </div>
-
-                <div class="navbar-collapse collapse" id=".navbar-collapse">
-                    <ul class="nav navbar-nav">
-
-                        <li><a href="JobHome.html"><span class="glyphicon glyphicon-home"></span></a></li>
-
-                        <li class="nav-item dropdown">
-                            <a href="#" class="navbar-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" aria-expanded="False" aria-haspopup="true" role="button">
-                                Lance Bucket<span class="caret"></span>
-                            </a>
-
-                        </li>
-
-
-                        <li><a href="JobHome.html"> Job Timeline</a></li>
-
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right " style="right: 30px">
-                        <li>
-                            <a href="JobPost.html" class="btn btn-warning" type="button">
-                                <font color="White">Post a Project</font>
-                            </a>
-                        </li>
-                        <li><a href="Profile.html"><span class="glyphicon glyphicon-user"> Profile </span></a></li>
-                        <li style=""><a href="Open.html"><span class="glyphicon glyphicon-log-in"> LogOut</span></a></li>
-
-
-                        <li style=""><a href="">           </a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <br /><br />*@
         <div class="container"><h1>Requested Members  </h1></div>
         <div id="exTab1" class="container">
             <ul class="nav nav-pills">
@@ -153,9 +79,18 @@
                                                             5.0
                                                         </th>
                                                         <th>
+                                                            @using (Html.BeginForm("RequestedMember", "ProjectPost"))
+                                                            {
+                                                                <input type="hidden" name="PostId" value="@Model.PostId" />
+                                                                 <input type="hidden" name="UserId" value="@Model.UserInfo[0].UserId" />
 
 
-                                                            <a href='workerProgressOwner.html' class="btn btn-primary">Hire</a>
+                                                                <div class="col-lg-3 col-lg-offset-2">
+                                                                    <a href="WorkerProgressOwner.html">
+                                                                        <button type="submit" class="btn btn-primary">Hire</button>
+                                                                    </a>
+                                                                </div>
+                                                            }
 
                                                         </th>
                                                     </div>
@@ -462,6 +397,3 @@
         </script>
 
 
-
-@*</body>
-</html>*@

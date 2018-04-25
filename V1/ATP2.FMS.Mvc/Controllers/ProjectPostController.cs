@@ -68,8 +68,6 @@ namespace ATP2.FMS.Mvc.Controllers
             return RedirectToAction("CreateProject");
         }
 
-       
-
         public ActionResult ProjectDetails(int? id)
         {
             var result = postProjectDao.GetByID(1);
@@ -130,21 +128,114 @@ namespace ATP2.FMS.Mvc.Controllers
 
         public ActionResult RequestedMember()
         {
-            RequestedMemberModel requested=new RequestedMemberModel();
+            RequestedMemberModel requested = getall();
+            return View(requested);
+        }
+
+        [HttpPost]
+        public ActionResult RequestedMember(SelectedWorker selected)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View("RequestedMember");
+            }
+
+            try
+            {
+
+                var result = selectedWorkerDao.Save(selected);
+                if (result.HasError)
+                {
+                    ViewBag.Message = result.Message;
+                    return View("RequestedMember");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return RedirectToAction("RequestedMember");
+        }
+
+        public ActionResult WorkProgress()
+        {
+            WorkProgressModel work = new WorkProgressModel();
+
+            work.RequestedMemberModel= getall();
+            var result = projectSectionDao.GetAll(1);
+            work.ProjectSection = result;
+            var result2 = selectedWorkerDao.GetAll(1);
+            work.SelectedWorkers = result2;
+            foreach (var p in result2)
+            {
+                var result3 = userDao.GetById(p.UserId);
+                work.Name.Add(result3.Data.FristName + " " + result3.Data.LastName);
+              
+            }
+           
+
+            return View(work);
+        }
+
+        [HttpPost]
+        public ActionResult WorkProgress(ProjectSection projectSection)
+        {
+
+            try
+            {
+
+                var result = projectSectionDao.Save(projectSection);
+                if (result.HasError)
+                {
+                    ViewBag.Message = result.Message;
+                    return View("WorkProgress");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return RedirectToAction("WorkProgress");
+        }
+
+        [HttpPost]
+        public ActionResult CommentInsert(COMMENTSEC commentsec)
+        {
+
+            try
+            {
+
+                var result = CommunicationDao.Save(commentsec);
+                if (result.HasError)
+                {
+                    ViewBag.Message = result.Message;
+                    return View("WorkProgress");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return RedirectToAction("WorkProgress");
+        }
+
+        private RequestedMemberModel getall()
+        {
+            RequestedMemberModel requested = new RequestedMemberModel();
             var result = response.GetAll(1);
 
             var result2 = postProjectDao.GetByID(1);
             requested.ProjectName = result2.Data.ProjectName;
             requested.Description = result2.Data.Description;
+            requested.PostId = result2.Data.PostId;
             foreach (var user in result)
             {
                 var result3 = userDao.GetById(user.WUserId);
                 requested.UserInfo.Add(result3.Data);
 
             }
-            return View(requested);
+            return requested;
         }
-
-
     }
 }

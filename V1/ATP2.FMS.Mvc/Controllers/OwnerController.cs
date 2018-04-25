@@ -40,7 +40,36 @@ namespace ATP2.FMS.Mvc.Controllers
         public ActionResult ProjectList()
         {
             var result = postProjectDao.GetAll();
-            return View(result);
+            var result2 = skillsDao.GetAll();
+            ProjectListModel projectListModel=new ProjectListModel();
+            projectListModel.PostAProjects = result;
+            projectListModel.Skills = result2;
+
+            return View(projectListModel);
+        }
+
+        [HttpPost]
+        public ActionResult ProjectList(ProjectSkills skill)
+        {
+            ProjectListModel projectListModel = new ProjectListModel();
+
+            var result = projectSkillDao.GetAllskill(skill.SkillID);
+            foreach (var projectSkillse in result)
+            {
+                var result2 = postProjectDao.GetByID(projectSkillse.PostID);
+                projectListModel.PostAProjects.Add(result2.Data);
+
+            }
+            var result3 = skillsDao.GetAll();
+            projectListModel.Skills = result3;
+            return View(projectListModel);
+        }
+
+        public ActionResult ProjectList1()
+        {
+
+
+            return RedirectToAction("ProjectList");
         }
     }
 }

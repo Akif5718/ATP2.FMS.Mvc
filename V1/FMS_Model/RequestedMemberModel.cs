@@ -11,6 +11,8 @@ namespace FMS_Model
     {
        public List<UserInfo> UserInfo =new List<UserInfo>();
 
+       public int PostId { get; set; }
+
        public string ProjectName { get; set; }
 
        public string Description { get; set; }

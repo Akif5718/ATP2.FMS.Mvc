@@ -27,6 +27,7 @@ namespace FMS_Entities
 
        [Required]
        public string Commt { get; set; }
+       public string UserName { get; set; }
 
 
 

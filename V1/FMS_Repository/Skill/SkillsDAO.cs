@@ -23,7 +23,7 @@ namespace FMS_Repository
 
                 if (dt != null && dt.Rows.Count != 0)
                 {
-                    for (int i = 0; i <= dt.Rows.Count; i++)
+                    for (int i = 0; i <dt.Rows.Count; i++)
                     {
                         Skill u = ConvertToEntity(dt.Rows[i]);
                         result.Add(u);

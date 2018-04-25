@@ -25,17 +25,14 @@ namespace FMS_Repository.Project
                 if (dt == null || dt.Rows.Count == 0)
                 {
                     COMMENTSEC.CommunicationId = GetID();
-                    query = "insert into COMMENTSEC values(" + COMMENTSEC.CommunicationId + "," + COMMENTSEC.UserId + "," + COMMENTSEC.ProjectSection + ",'" + COMMENTSEC.Commt + "')";
+                    query = "insert into COMMENTSEC values(" + COMMENTSEC.ProjectSectionId + ",'" + COMMENTSEC.Commt + "'," + COMMENTSEC.UserId + "," + COMMENTSEC.CommunicationId + ",'" + COMMENTSEC.UserName + "')";
                 }
                 //else
                 //{
                 //    query = "update COMMENTSEC set ProjectName='" + COMMENTSEC.ProjectName + "',StartTime='" + COMMENTSEC.StartTime + "',EndTime='" + COMMENTSEC.EndTime + "',Description='" + COMMENTSEC.Description + "',ProjectSection='" + COMMENTSEC.ProjectSection + "',Price=" + COMMENTSEC.Price + ",Members=" + COMMENTSEC.Members + " where PostID=" + COMMENTSEC.PostId;
                 //}
 
-                if (!IsValid(COMMENTSEC, result))
-                {
-                    return result;
-                }
+          
 
                 result.HasError = DataAccess.ExecuteQuery(query) <= 0;
 
@@ -65,6 +62,7 @@ namespace FMS_Repository.Project
 
             return id;
         }
+
         public List<COMMENTSEC> GetAll()
         {
             var result = new List<COMMENTSEC>();
@@ -75,7 +73,31 @@ namespace FMS_Repository.Project
 
                 if (dt != null && dt.Rows.Count != 0)
                 {
-                    for (int i = 0; i <= dt.Rows.Count; i++)
+                    for (int i = 0; i <dt.Rows.Count; i++)
+                    {
+                        COMMENTSEC u = ConvertToEntity(dt.Rows[i]);
+                        result.Add(u);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return result;
+            }
+            return result;
+        }
+
+        public List<COMMENTSEC> GetAll(int id)
+        {
+            var result = new List<COMMENTSEC>();
+            try
+            {
+                string query = "select * from COMMENTSEC where PROJECTSECID=" + id;
+                var dt = DataAccess.GetDataTable(query);
+
+                if (dt != null && dt.Rows.Count != 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         COMMENTSEC u = ConvertToEntity(dt.Rows[i]);
                         result.Add(u);
@@ -128,20 +150,6 @@ namespace FMS_Repository.Project
         //    }
         //}
 
-        private bool IsValid(COMMENTSEC obj, Result<COMMENTSEC> result)
-        {
-            if (!ValidationHelper.IsStringValid(obj.Commt))
-            {
-                result.HasError = true;
-                result.Message = "Invalid School Name";
-                return false;
-            }
-          
-            
-
-
-            return true;
-        }
 
         private COMMENTSEC ConvertToEntity(DataRow row)
         {
@@ -150,8 +158,9 @@ namespace FMS_Repository.Project
                 COMMENTSEC u = new COMMENTSEC();
                 u.CommunicationId = Int32.Parse(row["CommunicationId"].ToString());
                 u.UserId = Int32.Parse(row["UserID"].ToString());
-                u.ProjectSectionId = Int32.Parse(row["ProjectSectionId"].ToString());
+                u.ProjectSectionId = Int32.Parse(row["ProjectSecId"].ToString());
                 u.Commt = row["Commt"].ToString();
+                u.UserName = row["USERNAME"].ToString();
                
 
 

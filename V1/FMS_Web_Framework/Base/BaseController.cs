@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using FMS_Repository;
+using FMS_Repository.Project;
 using FMS_RepositoryOracle;
 
 namespace FMS_Web_Framework.Base
@@ -133,7 +134,28 @@ namespace FMS_Web_Framework.Base
             }
 
         }
+        private static SelectedWorkerDAO _selectedWorker;
+        public static SelectedWorkerDAO selectedWorkerDao
+        {
+            get
+            {
+                if (_selectedWorker == null)
+                    _selectedWorker = new SelectedWorkerDAO();
+                return _selectedWorker;
+            }
 
+        }
+        private static CommunicationDAO _communicationDao;
+        public static CommunicationDAO CommunicationDao
+        {
+            get
+            {
+                if (_communicationDao == null)
+                    _communicationDao = new CommunicationDAO();
+                return _communicationDao;
+            }
+
+        }
 
 
     }

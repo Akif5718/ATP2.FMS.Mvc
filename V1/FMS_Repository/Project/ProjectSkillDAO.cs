@@ -88,6 +88,30 @@ namespace FMS_Repository
             return result;
         }
 
+        public List<ProjectSkills> GetAllskill(int id)
+        {
+            var result = new List<ProjectSkills>();
+            try
+            {
+                string query = "select * from ProjectSkill where skillid=" + id;
+                var dt = DataAccess.GetDataTable(query);
+
+                if (dt != null && dt.Rows.Count != 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        ProjectSkills u = ConvertToEntity(dt.Rows[i]);
+                        result.Add(u);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return result;
+        }
+
         //public Result<ProjectSkills> GetByID(int id)
         //{
         //    var result = new Result<ProjectSkills>();

@@ -1,4 +1,4 @@
-﻿@model List<FMS_Entities.PostAProject>
+﻿@model FMS_Model.ProjectListModel
 
 @{
     ViewBag.Title = "ProjectList";
@@ -112,15 +112,34 @@
                 </label>
             </div>
             <div class="row">
-                <form role="form ">
+           
                     <div class="col-md-5">
                         <div class="form-group">
+                            
+                            @using (Html.BeginForm("ProjectList", "Owner"))
+                            {
+                                <select class="form-control" name="SkillId">
+                                    @foreach (var s in Model.Skills)
+                                    {
+                                        <option value="@s.SkillId" name="SkillName">@s.SkillName</option>
+                                    }
 
-                            <input class="form-control " type="text">
+                                </select>
+                          
+                                <div class="form-group">
+                                    <div class="">
+                                        <input type="submit" value=" Submit  " class="btn btn-default btn-block" />
+                                    </div>
+                                </div>
+                            }
 
+
+
+
+                          
                         </div>
                     </div>
-                </form>
+               
             </div>
 
         </div>
@@ -184,9 +203,13 @@
         </div>
         <hr />
         <div>
-            <div class="col-md-9">
-                <a href="#" class="btn btn-primary">Clear Filter</a>
-            </div>
+            @using (Html.BeginForm("ProjectList1", "Owner"))
+            {
+                <div class="col-md-9">
+                    <input type="submit" value="Clear Filter" class="btn btn-primary" />
+                </div>
+            }
+           
 
 
             <div class="col-md-3">
@@ -215,7 +238,7 @@
                         <th>Price(USD)</th>
                     </tr>
              
-               @foreach (var p in Model)
+               @foreach (var p in Model.PostAProjects)
                {
                 <tr class="" style="background-color: skyblue; color: black">
                     <td>

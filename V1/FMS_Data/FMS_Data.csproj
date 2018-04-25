@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201804212044023_addtableworkerskills.Designer.cs">
       <DependentUpon>201804212044023_addtableworkerskills.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804242357112_updated.cs" />
+    <Compile Include="Migrations\201804242357112_updated.Designer.cs">
+      <DependentUpon>201804242357112_updated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -92,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804212044023_addtableworkerskills.resx">
       <DependentUpon>201804212044023_addtableworkerskills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804242357112_updated.resx">
+      <DependentUpon>201804242357112_updated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

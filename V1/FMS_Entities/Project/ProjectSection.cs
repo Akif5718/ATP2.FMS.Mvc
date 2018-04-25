@@ -24,6 +24,13 @@ namespace FMS_Entities
        public string SectionName { get; set; }
 
      
+       public string SectionDescription { get; set; }
+
+       public string WorkerName { get; set; }
+
+       public string FinishTime { get; set; }
+
+     
        public int Percentage { get; set; }
 
        public double Price { get; set; }

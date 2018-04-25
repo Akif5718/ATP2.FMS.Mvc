@@ -26,17 +26,15 @@ namespace FMS_Repository
                 {
                     ProjectSection.ProjectSectionId = GetID();
                     ProjectSection.PostId = GetID2();
-                    query = "insert into ProjectSection values("+ ProjectSection.ProjectSectionId + "," +ProjectSection.PostId + ",'" + ProjectSection.SectionName + "','" + ProjectSection.Percentage + "'," + ProjectSection.Price + ")";
+
+                    query = "insert into ProjectSection values(" + ProjectSection.ProjectSectionId + "," + ProjectSection.PostId + ",'" + ProjectSection.SectionName + "','" + ProjectSection.Percentage + "'," + ProjectSection.Price + ",'" + ProjectSection.SectionDescription + "','" + ProjectSection.FinishTime + "','" + ProjectSection.WorkerName + "')";
                 }
                 else
                 {
-                    query = "update ProjectSection set SectionName='" + ProjectSection.SectionName + "',Percentage='" + ProjectSection.Percentage + "',Price=" + ProjectSection.Price +  " where PostID=" + ProjectSection.PostId;
+                    query = "update ProjectSection set Percentage=" + ProjectSection.Percentage + ",Price=" + ProjectSection.Price + ",SectionDescription='" + ProjectSection.SectionDescription + "',FinishTime='" + ProjectSection.FinishTime + "',WorkerName='" + ProjectSection.WorkerName + "'  where ProjectSectionId=" + ProjectSection.ProjectSectionId;
                 }
 
-                if (!IsValid(ProjectSection, result))
-                {
-                    return result;
-                }
+               
 
                 result.HasError = DataAccess.ExecuteQuery(query) <= 0;
 
@@ -102,6 +100,30 @@ namespace FMS_Repository
             return result;
         }
 
+        public List<ProjectSection> GetAll(int id)
+        {
+            var result = new List<ProjectSection>();
+            try
+            {
+                string query = "select * from ProjectSection where PostID=" + id;
+                var dt = DataAccess.GetDataTable(query);
+
+                if (dt != null && dt.Rows.Count != 0)
+                {
+                    for (int i = 0; i <dt.Rows.Count; i++)
+                    {
+                        ProjectSection u = ConvertToEntity(dt.Rows[i]);
+                        result.Add(u);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return result;
+            }
+            return result;
+        }
+
         public Result<ProjectSection> GetByID(int id)
         {
             var result = new Result<ProjectSection>();
@@ -141,19 +163,7 @@ namespace FMS_Repository
             }
         }
 
-        private bool IsValid(ProjectSection obj, Result<ProjectSection> result)
-        {
-            if (!ValidationHelper.IsStringValid(obj.SectionName))
-            {
-                result.HasError = true;
-                result.Message = "Invalid School Name";
-                return false;
-            }
-           
-
-
-            return true;
-        }
+        
 
         private ProjectSection ConvertToEntity(DataRow row)
         {
@@ -161,10 +171,14 @@ namespace FMS_Repository
             {
                 ProjectSection u = new ProjectSection();
                 u.PostId = Int32.Parse(row["PostID"].ToString());
+                u.ProjectSectionId = Int32.Parse(row["PROJECTSECTIONID"].ToString());
 
                 u.Price = Int32.Parse(row["Price"].ToString());
                 u.Percentage = Int32.Parse(row["Percentage"].ToString());
                 u.SectionName = row["SectionName"].ToString();
+                u.SectionDescription = row["SECTIONDESCRIPTION"].ToString();
+                u.FinishTime = row["FINISHTIME"].ToString();
+                u.WorkerName = row["WORKERNAME"].ToString();
          
 
 
