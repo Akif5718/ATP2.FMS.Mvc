@@ -31,13 +31,15 @@ namespace FMS_RepositoryOracle
                     }
                     else
                     {
-                        query = "update UserInfo set FristName='" + userinfo.FristName + "',LastName='" + userinfo.LastName + "',Email='" + userinfo.Email + "',Password='" + userinfo.Password + "',DateofBrith=" + userinfo.DateofBrith + ",City='" + userinfo.City + "',State='" + userinfo.State + "',ProPic='" + userinfo.ProPic + "',Country='" + userinfo.Country + "',Balance=" + userinfo.Balance + " where UserId=" + userinfo.UserId;
+                       // var b = userinfo.DateofBrith.ToString(string.Format("dd/MMM/yyyy"));
+
+                        query = "update UserInfo set FirstName='" + userinfo.FristName + "',LastName='" + userinfo.LastName + "',Password='" + userinfo.Password + "',City='" + userinfo.City + "',State='" + userinfo.State + "',ProPic='" + userinfo.ProPic + "',Country='" + userinfo.Country + "',Balance=" + userinfo.Balance + " where UserId=" + userinfo.UserId;
                     }
 
-                    if (!IsValid(userinfo, result))
-                    {
-                        return result;
-                    }
+                    //if (!IsValid(userinfo, result))
+                    //{
+                    //    return result;
+                    //}
 
                     result.HasError = DataAccess.ExecuteQuery(query) <= 0;
 

@@ -71,6 +71,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FMS_Entities\FMS_Entities.csproj">
+      <Project>{CE67BCBD-946B-4E6F-98F3-9C9FFD05EC11}</Project>
+      <Name>FMS_Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FMS_Repository\FMS_RepositoryOracle.csproj">
       <Project>{143dc45a-d31d-4a4c-9f8e-5d67e09011cc}</Project>
       <Name>FMS_RepositoryOracle</Name>

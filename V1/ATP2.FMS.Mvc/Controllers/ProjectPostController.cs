@@ -70,6 +70,7 @@ namespace ATP2.FMS.Mvc.Controllers
 
         public ActionResult ProjectDetails(int? id)
         {
+            //postid
             var result = postProjectDao.GetByID(1);
             PostProjectModel postProjectModel= new PostProjectModel();
 
@@ -164,6 +165,10 @@ namespace ATP2.FMS.Mvc.Controllers
 
             work.RequestedMemberModel= getall();
             var result = projectSectionDao.GetAll(1);
+            foreach (var section in result)
+            {
+                work.USectionName.Add(section.SectionName+"1");
+            }
             work.ProjectSection = result;
             var result2 = selectedWorkerDao.GetAll(1);
             work.SelectedWorkers = result2;

@@ -125,27 +125,7 @@ function drawChart() {
                     </div>
 
                     <br /><br />
-                    <div class="row">
-                        <div class="col-md-6" style="">
-                            <div style="width:100%; float: left; height:100%;border: 2px solid;border-color: #d7dee8">
-                                <a href="#"><h4 align="center">Follower</h4></a>
-                                <h5 align="center"><span class="badge badge-primary badge-pill">14</span></h5>
-                            </div>
-                        </div>
-                        <div class="col-md-6" style="">
-
-                            <div style="width:100%; float: left; height:100%; border: 2px solid;border-color: #d7dee8">
-                                <a href="#">
-                                    <h4 align="center">Following</h4>
-                                </a>
-                                <h5 align="center"><span class="badge badge-primary badge-pill">20</span></h5>
-                            </div>
-                        </div>
-
-
-
-
-                    </div>
+                    
 
                     <div style=" border-width: 0px; width: 250px; overflow: hidden; color:white;">
 
@@ -217,11 +197,13 @@ function drawChart() {
                     <br/><br />
                     <div style=" border-width: 0px;  height: 40px; width: 110px; overflow: hidden;">
                         &nbsp;&nbsp;
-                        <a href="EditProfileOwner.html" class="btn btn-success" type="button">
+                       <a href="@Url.Action("EditProfile","Owner")" class="btn btn-success" type="button">
                             <i class="fa fa-edit"></i>
 
                             <font color="White">Edit</font>
                         </a>
+
+
                         <br /><br />
                     </div>
                 </div>
@@ -243,26 +225,23 @@ function drawChart() {
                         <div style=" border-width: 0px;  overflow: hidden;">
                             <fieldset>
                                 <legend>Posted Jobs:</legend>
+                             @foreach (var p in Model.PostAProject)
+                             {
                                 <div class="list-group">
-                                    <a href='WorkerProgressOwner.html' class="list-group-item list-group-item-action flex-column align-items-start active">
+                                    <a href='' class="list-group-item list-group-item-action flex-column align-items-start active">
                                         <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">List group item heading</h5>
-                                            <small>3 days ago</small>
+                                            <h5 class="mb-1">@p.ProjectName</h5>
+                                            <small>@p.StartTime</small>
                                         </div>
-                                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                        <small>Donec id elit non mi porta.</small>
+                                        <p class="mb-1">@p.Description</p>
+                                       
                                     </a>
                                     <a href="Bars.html" class="btn btn-primary">Requests</a>
-                                    <a href="WorkerProgressOwner.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">List group item heading</h5>
-                                            <small class="text-muted">3 days ago</small>
-                                        </div>
-                                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                        <small class="text-muted">Donec id elit non mi porta.</small>
-                                    </a>
-                                    <a href="Bars.html" class="btn btn-primary">Requests</a>
+
                                 </div>
+                             }
+
+                               
 
                             </fieldset>
                         </div>
@@ -322,16 +301,7 @@ function drawChart() {
                         &nbsp; &nbsp;<font color="#00ff40">85%</font>&nbsp; &nbsp; &nbsp; Behavior<br><br><br>
 
                     </div><br /><br />
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Communication</h3>
-                        </div>
-                        <div class="panel-body">
-                            <h3>Alex</h3><p>Hello</p>
-                            <h3>John</h3><p>Hi</p>
-                            <h3>Smith</h3><p>Are you there?</p>
-                        </div>
-                    </div>
+                   
 
 
                 </div>

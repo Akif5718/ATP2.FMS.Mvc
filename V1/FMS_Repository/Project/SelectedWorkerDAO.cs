@@ -112,6 +112,30 @@ namespace FMS_Repository.Project
             return result;
         }
 
+        public List<SelectedWorker> GetAllUser(int id)
+        {
+            var result = new List<SelectedWorker>();
+            try
+            {
+                string query = "select * from SelectedWorker where UserId=" + id;
+                var dt = DataAccess.GetDataTable(query);
+
+                if (dt != null && dt.Rows.Count != 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        SelectedWorker u = ConvertToEntity(dt.Rows[i]);
+                        result.Add(u);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return result;
+            }
+            return result;
+        }
+
         public Result<SelectedWorker> GetByID(int id)
         {
             var result = new Result<SelectedWorker>();

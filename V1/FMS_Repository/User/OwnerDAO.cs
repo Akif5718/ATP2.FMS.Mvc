@@ -6,8 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using FMS_Data;
 using FMS_Entities;
+using FMS_Framework;
 using FMS_Framework.Helper;
 using FMS_Framework.Object;
+using Microsoft.VisualBasic.ApplicationServices;
+using Newtonsoft.Json;
 using OwnerInfo = FMS_Entities.OwnerInfo;
 namespace FMS_RepositoryOracle
 {
@@ -23,7 +26,7 @@ namespace FMS_RepositoryOracle
 
                 if (dt == null || dt.Rows.Count == 0)
                 {
-                   // OwnerInfo.UserId = GetID();
+                    OwnerInfo.UserId = CurrentUser.User.UserId;
                     query = "insert into OwnerInfo values(" + OwnerInfo.UserId + ",'" + OwnerInfo.CompanyName + "','" + OwnerInfo.CompanyAddress + "','" + OwnerInfo.CompanyCode + "','" + OwnerInfo.Position + "')";
                 }
                 else

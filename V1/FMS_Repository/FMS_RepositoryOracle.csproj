@@ -30,6 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Others\PaymentDAO.cs" />
     <Compile Include="Project\CommunicationDAO.cs" />
     <Compile Include="Project\SavedFileDAO.cs" />
     <Compile Include="Project\SelectedWorkerDAO.cs" />
@@ -55,6 +61,7 @@
     <Compile Include="Skill\SkillsDAO.cs" />
     <Compile Include="User\UserDAO.cs" />
     <Compile Include="User\WorkerDAO.cs" />
+    <Compile Include="User\WorkerSkillDAO.cs" />
     <Compile Include="User\WorkHistoryDAO.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,7 +78,12 @@
       <Name>FMS_Framework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

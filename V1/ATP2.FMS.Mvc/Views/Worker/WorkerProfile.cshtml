@@ -1,4 +1,4 @@
-﻿
+﻿@model FMS_Model.Worker
 @{
     ViewBag.Title = "WorkerProfile";
     Layout = "~/Views/Shared/AfterLoginWorker.cshtml";
@@ -61,32 +61,36 @@
                 &nbsp;&nbsp;
                 Name
                 :
-                Bob
+                @Model.FristName &nbsp; @Model.LastName
+
+
+                
 
 
                 <hr>
                 &nbsp;&nbsp;
                 Email
                 :
-                bob@aiub.edu
+                @Model.Email
 
-                <hr>
-                &nbsp;&nbsp;
-                Gender
-                :
-                Male
+                
 
+              
                 <hr>
                 &nbsp;&nbsp;
                 Date of Birth
                 :
-                19/09/1998
+                @Model.DateofBrith
+
+                
 
                 <hr>
                 &nbsp;&nbsp;
                 Role
                 :
-                Owner
+                @Model.UserType
+
+                
 
                 <hr>
                 &nbsp;&nbsp;
@@ -98,7 +102,7 @@
                 &nbsp;&nbsp;
                 User Since
                 :
-                15/09/2015
+                @Model.JoinDate
 
 
             </div>
@@ -119,8 +123,12 @@
             <div class="col-md-12">
                 <div style=" border-width: 0px;  overflow: hidden;">
                     <fieldset>
-                        <legend><h3>Posted Jobs:</h3></legend>
+                        <legend><h3>Current Jobs:</h3></legend>
                         <div class="list-group">
+                            @foreach (var p in Model.PostAProjects)
+                            {
+                                
+                            }
                             <a href='WorkerProgress.html' class="list-group-item list-group-item-action flex-column align-items-start active">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1">List group item heading</h5>
@@ -128,14 +136,6 @@
                                 </div>
                                 <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
                                 <small>Donec id elit non mi porta.</small>
-                            </a>
-                            <a href="WorkerProgress.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">List group item heading</h5>
-                                    <small class="text-muted">3 days ago</small>
-                                </div>
-                                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                <small class="text-muted">Donec id elit non mi porta.</small>
                             </a>
 
                         </div>
@@ -146,7 +146,7 @@
                     <h1 class="display-3" style="text-shadow: 2px 2px #FF0000;;">About Me</h1>
                     <input type="checkbox" id="chkPassport" onclick="ShowHideDiv(this)" />
                     Show my Information
-                    </label>
+                    <label>
                     <div id="dvPassport" style="display: none">
                         <br />
                         <p class="lead" style="color:white">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
@@ -175,7 +175,7 @@
                                         <li>Translating</li>
 
                                     </ol>
-                                    </list>
+                                  
 
                             </ul>
 
@@ -244,16 +244,7 @@
                 &nbsp; &nbsp;<font color="#00ff40">85%</font>&nbsp; &nbsp; &nbsp; Completeness<br><br><br>
 
             </div><br /><br />
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Communication</h3>
-                </div>
-                <div class="panel-body">
-                    <h3>Alex</h3><p>Hello</p>
-                    <h3>John</h3><p>Hi</p>
-                    <h3>Smith</h3><p>Are you there?</p>
-                </div>
-            </div>
+         
 
 
         </div>

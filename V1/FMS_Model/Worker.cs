@@ -8,7 +8,7 @@ using FMS_Entities;
 
 namespace FMS_Model
 {
-    public class Owner
+    public class Worker
     {
     
         public int UserId { get; set; }
@@ -42,20 +42,18 @@ namespace FMS_Model
         public string UserType { get; set; }
 
         public double Balance { get; set; }
-        
-        public string CompanyName { get; set; }
 
-        public string CompanyAddress { get; set; }
 
-        public List<PostAProject> PostAProject=new List<PostAProject>();
+        public List<SelectedWorker> SelectedWorkers=new List<SelectedWorker>();
+
+        public List<PostAProject> PostAProjects=new List<PostAProject>();
 
         public UserInfo UserInfo;
 
-      
-        public string CompanyCode { get; set; }
+
+        public string RatePerHour { get; set; }
 
        
-        public string Position { get; set; }
-
+        
     }
 }

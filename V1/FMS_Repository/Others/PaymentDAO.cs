@@ -6,37 +6,36 @@ using System.Text;
 using System.Threading.Tasks;
 using FMS_Data;
 using FMS_Entities;
-using FMS_Framework;
 using FMS_Framework.Helper;
 using FMS_Framework.Object;
-using WorkerInfo = FMS_Entities.WorkerInfo;
+using Payment = FMS_Entities.Payment;
 
-namespace FMS_RepositoryOracle
+namespace FMS_Repository
 {
-  public  class WorkerDAO
+   public class PaymentDAO
     {
-
-
-        public Result<WorkerInfo> Save(WorkerInfo WorkerInfo)
+        public Result<Payment> Save(Payment Payment)
         {
-            var result = new Result<WorkerInfo>();
+            var result = new Result<Payment>();
             try
             {
-                string query = "select * from WorkerInfo where UserId=" + WorkerInfo.UserId;
+                string query = "select * from Payment where UserId=" + Payment.Id;
                 var dt = DataAccess.GetDataTable(query);
 
                 if (dt == null || dt.Rows.Count == 0)
                 {
-                    WorkerInfo.UserId = CurrentUser.User.UserId;
-                    query = "insert into WorkerInfo values(" + WorkerInfo.UserId + ",'" + WorkerInfo.EarnedMoney + "','" + WorkerInfo.RatePerHour + "')";
+                    // Payment.UserId = GetID();
+                    query = "insert into Payment values(" + Payment.Id + "," + Payment.OUserId + "," + Payment.WUserId + "," + Payment.Balance + ")";
                 }
                 else
                 {
-                    query = "update WorkerInfo set EarnedMoney=" + WorkerInfo.EarnedMoney + ",RatePerHour='" + WorkerInfo.RatePerHour + "' where UserId=" +
-                      WorkerInfo.UserId;
+                    query = "update Payment set Balance=" + Payment.Balance + " where UserId=" + Payment.Id;
                 }
 
-              
+                //if (!IsValid(Payment, result))
+                //{
+                //    return result;
+                //}
 
                 result.HasError = DataAccess.ExecuteQuery(query) <= 0;
 
@@ -44,7 +43,7 @@ namespace FMS_RepositoryOracle
                     result.Message = "Something Went Wrong";
                 else
                 {
-                    result.Data = WorkerInfo;
+                    result.Data = Payment;
                 }
             }
             catch (Exception ex)
@@ -57,7 +56,7 @@ namespace FMS_RepositoryOracle
 
         private int GetID()
         {
-            string query = "select * from WorkerInfo order by UserId desc";
+            string query = "select * from Payment order by Id desc";
             var dt = DataAccess.GetDataTable(query);
             int id = 1;
 
@@ -66,36 +65,37 @@ namespace FMS_RepositoryOracle
 
             return id;
         }
-        public List<WorkerInfo> GetAll()
+
+        public List<Payment> GetAll()
         {
-            var result = new List<WorkerInfo>();
+            var result = new List<Payment>();
             try
             {
-                string query = "select * from WorkerInfo";
+                string query = "select * from Payment";
                 var dt = DataAccess.GetDataTable(query);
 
                 if (dt != null && dt.Rows.Count != 0)
                 {
-                    for (int i = 0; i <= dt.Rows.Count; i++)
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        WorkerInfo u = ConvertToEntity(dt.Rows[i]);
+                        Payment u = ConvertToEntity(dt.Rows[i]);
                         result.Add(u);
                     }
                 }
             }
             catch (Exception ex)
             {
-
+                return result;
             }
             return result;
         }
 
-        public Result<WorkerInfo> GetByID(int id)
+        public Result<Payment> GetByID(int id)
         {
-            var result = new Result<WorkerInfo>();
+            var result = new Result<Payment>();
             try
             {
-                string query = "select * from WorkerInfo where UserId=" + id;
+                string query = "select * from Payment where Id=" + id;
                 var dt = DataAccess.GetDataTable(query);
 
                 if (dt == null || dt.Rows.Count == 0)
@@ -117,10 +117,10 @@ namespace FMS_RepositoryOracle
 
         public bool Delete(int id)
         {
-            var result = new Result<WorkerInfo>();
+            var result = new Result<Payment>();
             try
             {
-                string query = "delete from WorkerInfo where UserId=" + id;
+                string query = "delete from Payment where Id=" + id;
                 return DataAccess.ExecuteQuery(query) > 0;
             }
             catch (Exception ex)
@@ -129,19 +129,16 @@ namespace FMS_RepositoryOracle
             }
         }
 
-    
-
-        private WorkerInfo ConvertToEntity(DataRow row)
+        private Payment ConvertToEntity(DataRow row)
         {
             try
             {
-                WorkerInfo u = new WorkerInfo();
-                u.UserId = Int32.Parse(row["ID"].ToString());
-                u.EarnedMoney = Int32.Parse(row["EarnedMoney"].ToString());
-                u.RatePerHour = row["RatePerHour"].ToString();
-
-
-
+                Payment u = new Payment();
+                u.Id = Int32.Parse(row["Id"].ToString());
+                u.OUserId = Int32.Parse(row["OUserId"].ToString());
+                u.WUserId = Int32.Parse(row["WUserId"].ToString());
+                u.Balance = Int32.Parse(row["Balance"].ToString());
+               
                 return u;
             }
             catch (Exception)
@@ -150,6 +147,5 @@ namespace FMS_RepositoryOracle
             }
 
         }
-   
     }
 }

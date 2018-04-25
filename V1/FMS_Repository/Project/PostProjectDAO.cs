@@ -116,6 +116,30 @@ namespace FMS_Repository
            return result;
        }
 
+       public List<PostAProject> GetAllUser(int id)
+       {
+           var result = new List<PostAProject>();
+           try
+           {
+               string query = "select * from PostAProject where WUserId=" + id;
+               var dt = DataAccess.GetDataTable(query);
+
+               if (dt != null && dt.Rows.Count != 0)
+               {
+                   for (int i = 0; i <= dt.Rows.Count; i++)
+                   {
+                       PostAProject u = ConvertToEntity(dt.Rows[i]);
+                       result.Add(u);
+                   }
+               }
+           }
+           catch (Exception ex)
+           {
+               return result;
+           }
+           return result;
+       }
+
        public Result<List<PostAProject>> GetAll(string key = "")
        {
            var result = new Result<List<PostAProject>>() { Data = new List<PostAProject>() };

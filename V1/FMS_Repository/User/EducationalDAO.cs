@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FMS_Data;
 using FMS_Entities;
+using FMS_Framework;
 using FMS_Framework.Helper;
 using FMS_Framework.Object;
 using EducationalBackground = FMS_Entities.EducationalBackground;
@@ -24,7 +25,7 @@ namespace FMS_Repository
 
                 if (dt == null || dt.Rows.Count == 0)
                 {
-                   // EducationalBackground.UserId = GetID();
+                    EducationalBackground.UserId = CurrentUser.User.UserId;
                     query = "insert into EducationalBackground values(" + EducationalBackground.UserId + ",'" + EducationalBackground.School + "','" + EducationalBackground.Collage + "','" + EducationalBackground.UniversityPost + "','" + EducationalBackground.UniversityUnder + "','" + EducationalBackground.Others + "')";
                 }
                 else

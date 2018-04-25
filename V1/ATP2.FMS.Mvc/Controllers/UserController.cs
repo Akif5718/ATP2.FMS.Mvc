@@ -5,8 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using FMS_Entities;
+using FMS_Framework;
 using FMS_Model;
 using FMS_RepositoryOracle;
+using FMS_Web_Framework;
 using FMS_Web_Framework.Base;
 using Newtonsoft.Json;
 
@@ -41,9 +43,10 @@ namespace ATP2.FMS.Mvc.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
-            return RedirectToAction("OwnerForm");
+            return RedirectToAction("OwnerProfile", "Owner");
 
         }
+
         public ActionResult RegisterForm()
         {
 
@@ -63,19 +66,24 @@ namespace ATP2.FMS.Mvc.Controllers
                 if (result.HasError)
                 {
                     ViewBag.Message = result.Message;
-                    return View("RegisterForm", userInfo);
+                    return View("OwnerForm", userInfo);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+            var jasonUserInfo = JsonConvert.SerializeObject(userInfo);
+            //FormsAuthentication.SignOut();
+            FormsAuthentication.SetAuthCookie(jasonUserInfo, false);
+            
+            CurrentUser.User = userInfo;
             if(userInfo.UserType.Equals("Owner"))
                 return RedirectToAction("OwnerForm", "User");
 
             else
             {
-                return RedirectToAction("RegisterForm");
+                return RedirectToAction("OwnerForm");
 
             }
 
@@ -112,12 +120,13 @@ namespace ATP2.FMS.Mvc.Controllers
 
             var jasonUserInfo = JsonConvert.SerializeObject(obj.Data);
             FormsAuthentication.SetAuthCookie(jasonUserInfo,false);
+            CurrentUser.User = obj.Data;
             if (obj.Data.UserType.Equals("Owner"))
-                return RedirectToAction("LoginForm");
+                return RedirectToAction("OwnerProfile", "Owner");
 
             else
             {
-                return RedirectToAction("LoginForm");
+                return RedirectToAction("OwnerProfile","Owner");
 
             }
         }

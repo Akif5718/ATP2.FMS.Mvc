@@ -17,6 +17,8 @@ namespace FMS_Model
 
        public List<string> Name=new List<string>();
 
+       public List<string> USectionName=new List<string>();
+
 
        public List<Comment>Comments=new List<Comment>(); 
 

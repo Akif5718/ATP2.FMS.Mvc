@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FMS_Data;
 using FMS_Entities;
+using FMS_Framework;
 using FMS_Framework.Helper;
 using FMS_Framework.Object;
 using WorkHistory = FMS_Entities.WorkHistory;
@@ -24,7 +25,7 @@ namespace FMS_Repository
 
                 if (dt == null || dt.Rows.Count == 0)
                 {
-                    // WorkHistory.UserId = GetID();
+                    WorkHistory.UserId = CurrentUser.User.UserId;
                     query = "insert into WorkHistory values(" + WorkHistory.UserId + ",'" + WorkHistory.CompanyName + "','" + WorkHistory.Position + "','" + WorkHistory.Experience + "')";
                 }
                 else

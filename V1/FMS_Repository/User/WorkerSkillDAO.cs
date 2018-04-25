@@ -9,34 +9,29 @@ using FMS_Entities;
 using FMS_Framework;
 using FMS_Framework.Helper;
 using FMS_Framework.Object;
-using WorkerInfo = FMS_Entities.WorkerInfo;
+using WorkerSkill = FMS_Entities.WorkerSkill;
 
-namespace FMS_RepositoryOracle
+namespace FMS_Repository
 {
-  public  class WorkerDAO
+  public  class WorkerSkillDAO
     {
-
-
-        public Result<WorkerInfo> Save(WorkerInfo WorkerInfo)
+        public Result<WorkerSkill> Save(WorkerSkill WorkerSkill)
         {
-            var result = new Result<WorkerInfo>();
+            var result = new Result<WorkerSkill>();
             try
             {
-                string query = "select * from WorkerInfo where UserId=" + WorkerInfo.UserId;
+                string query = "select * from WorkerSkill where UserId=" + WorkerSkill.UserId;
                 var dt = DataAccess.GetDataTable(query);
 
                 if (dt == null || dt.Rows.Count == 0)
                 {
-                    WorkerInfo.UserId = CurrentUser.User.UserId;
-                    query = "insert into WorkerInfo values(" + WorkerInfo.UserId + ",'" + WorkerInfo.EarnedMoney + "','" + WorkerInfo.RatePerHour + "')";
+                    WorkerSkill.UserId = CurrentUser.User.UserId;
+                    query = "insert into WorkerSkill values(" + WorkerSkill.UserId + "," + WorkerSkill.SkillId + ")";
                 }
                 else
                 {
-                    query = "update WorkerInfo set EarnedMoney=" + WorkerInfo.EarnedMoney + ",RatePerHour='" + WorkerInfo.RatePerHour + "' where UserId=" +
-                      WorkerInfo.UserId;
+                    query = "update WorkerSkill set SkillId=" + WorkerSkill.SkillId + " where UserId=" + WorkerSkill.UserId;
                 }
-
-              
 
                 result.HasError = DataAccess.ExecuteQuery(query) <= 0;
 
@@ -44,7 +39,7 @@ namespace FMS_RepositoryOracle
                     result.Message = "Something Went Wrong";
                 else
                 {
-                    result.Data = WorkerInfo;
+                    result.Data = WorkerSkill;
                 }
             }
             catch (Exception ex)
@@ -55,53 +50,42 @@ namespace FMS_RepositoryOracle
             return result;
         }
 
-        private int GetID()
+        public List<WorkerSkill> GetAll()
         {
-            string query = "select * from WorkerInfo order by UserId desc";
-            var dt = DataAccess.GetDataTable(query);
-            int id = 1;
-
-            if (dt != null && dt.Rows.Count != 0)
-                id = Int32.Parse(dt.Rows[0]["ID"].ToString()) + 1;
-
-            return id;
-        }
-        public List<WorkerInfo> GetAll()
-        {
-            var result = new List<WorkerInfo>();
+            var result = new List<WorkerSkill>();
             try
             {
-                string query = "select * from WorkerInfo";
+                string query = "select * from WorkerSkill";
                 var dt = DataAccess.GetDataTable(query);
 
                 if (dt != null && dt.Rows.Count != 0)
                 {
-                    for (int i = 0; i <= dt.Rows.Count; i++)
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        WorkerInfo u = ConvertToEntity(dt.Rows[i]);
+                        WorkerSkill u = ConvertToEntity(dt.Rows[i]);
                         result.Add(u);
                     }
                 }
             }
             catch (Exception ex)
             {
-
+                return result;
             }
             return result;
         }
 
-        public Result<WorkerInfo> GetByID(int id)
+        public Result<WorkerSkill> GetById(int UserId)
         {
-            var result = new Result<WorkerInfo>();
+            var result = new Result<WorkerSkill>();
             try
             {
-                string query = "select * from WorkerInfo where UserId=" + id;
+                string query = "select * from WorkerSkill where UserId=" + UserId;
                 var dt = DataAccess.GetDataTable(query);
 
                 if (dt == null || dt.Rows.Count == 0)
                 {
                     result.HasError = true;
-                    result.Message = "Invalid ID";
+                    result.Message = "Invalid UserId";
                     return result;
                 }
 
@@ -115,12 +99,12 @@ namespace FMS_RepositoryOracle
             return result;
         }
 
-        public bool Delete(int id)
+        public bool Delete(int UserId)
         {
-            var result = new Result<WorkerInfo>();
+            var result = new Result<WorkerSkill>();
             try
             {
-                string query = "delete from WorkerInfo where UserId=" + id;
+                string query = "delete from WorkerSkill where UserId=" + UserId;
                 return DataAccess.ExecuteQuery(query) > 0;
             }
             catch (Exception ex)
@@ -129,27 +113,21 @@ namespace FMS_RepositoryOracle
             }
         }
 
-    
-
-        private WorkerInfo ConvertToEntity(DataRow row)
+        private WorkerSkill ConvertToEntity(DataRow row)
         {
             try
             {
-                WorkerInfo u = new WorkerInfo();
-                u.UserId = Int32.Parse(row["ID"].ToString());
-                u.EarnedMoney = Int32.Parse(row["EarnedMoney"].ToString());
-                u.RatePerHour = row["RatePerHour"].ToString();
-
-
-
+                WorkerSkill u = new WorkerSkill();
+                u.UserId = Int32.Parse(row["UserId"].ToString());
+                u.SkillId = Int32.Parse(row["SkillId"].ToString());
+               
                 return u;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }
 
         }
-   
     }
 }

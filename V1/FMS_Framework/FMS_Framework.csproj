@@ -40,11 +40,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helper\ValidationHelper.cs" />
+    <Compile Include="Object\CurrentUser.cs" />
     <Compile Include="Object\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Constant\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FMS_Entities\FMS_Entities.csproj">
+      <Project>{CE67BCBD-946B-4E6F-98F3-9C9FFD05EC11}</Project>
+      <Name>FMS_Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
